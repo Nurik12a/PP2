@@ -4,35 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task3
+namespace Task2
 {
     class Program
     {
-        public static int[] doubleArray(int size, int[] mArray) //
+        public static bool primeN(int x)
         {
-            int[] dArray = new int[size * 2 + 1];
-            for (int i = 0; i < size; i++)
+            if (x <= 1)
             {
-                dArray[2 * i + 1] = mArray[i];
+                return false;
             }
-            for (int i = 1; i <= size; i++)
+            for (int i = 2; i <= Math.Sqrt(x); i++)
             {
-                dArray[2 * i] = dArray[2 * i - 1];
+                if (x % i == 0)
+                {
+                    return false;
+                }
             }
-            return dArray;
+            return true;
         }
-
         static void Main(string[] args)
-        {
-            string x = Console.ReadLine();
-            int ss = int.Parse(x);
-            int[] array = new int[ss];
-            string str = Console.ReadLine();
-            array = str.Split(' ').Select(int.Parse).ToArray();
-            int[] doubled = doubleArray(ss, array);
-            for (int i = 1; i <= ss * 2; i++)
+        {;
+            string s = System.IO.File.ReadAllText(@"C:\PP2\Week2\test2.txt");
+            int[] arr = new int[s.Length/2 + 1];
+            arr = s.Split(' ').Select(int.Parse).ToArray();
+            for (int i = 0; i < arr.Length;i++)
             {
-                Console.Write(doubled[i] + " ");
+                if (primeN(arr[i]) == true) {
+                    using (System.IO.StreamWriter file = new System.IO.StreamWriter(@"C:\PP2\Week2\test3.txt", true))
+                    {
+                        file.Write(arr[i] + " ");
+                    }
+                }
             }
         }
     }
