@@ -15,8 +15,8 @@ namespace Task4
             static void Main()
             {
                 string fileName = "test3.txt";
-                string Path = @"C:\Users\Nurik\Desktop\C#\Week2\path";
-                string Path1 = @"C:\Users\Nurik\Desktop\C#\Week2\path1";
+                string Path = @"C:\PP2\Week2\path";
+                string Path1 = @"C:\PP2\Week2\path1";
                 string sourceFile = System.IO.Path.Combine(Path, fileName);
                 string destFile = System.IO.Path.Combine(Path1, fileName);
                 if (!System.IO.Directory.Exists(Path1))
@@ -42,12 +42,12 @@ namespace Task4
                     Console.WriteLine("Исходный путь не существует!");
                 }
                 
-                if (System.IO.File.Exists(@"C:\Users\Nurik\Desktop\C#\Week2\path\test3.txt"))
+                if (System.IO.File.Exists(@"C:\PP2\Week2\path\test3.txt"))
                 {
                     
                     try
                     {
-                        System.IO.File.Delete(@"C:\Users\Nurik\Desktop\C#\Week2\path\test3.txt");
+                        System.IO.File.Delete(@"C:\PP2\Week2\path\test3.txt");
                     }
                     catch (System.IO.IOException e)
                     {

@@ -16,9 +16,9 @@ namespace Week2
         }
         static void Main(string[] args)
         {
-            string text = System.IO.File.ReadAllText(@"C:\Users\Nurik\Desktop\C#\Week2\test1.txt");
+            string text = System.IO.File.ReadAllText(@"C:\PP2\Week2\test1.txt");
             System.Console.WriteLine(text);
-            string[] lines = System.IO.File.ReadAllLines(@"C:\Users\Nurik\Desktop\C#\Week2\test1.txt");
+            string[] lines = System.IO.File.ReadAllLines(@"C:\PP2\Week2\test1.txt");
             string word = lines[0];
             string reversed = Reverse(word);
             if (word == reversed)
