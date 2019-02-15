@@ -12,7 +12,7 @@ namespace Task2
         {
             Student Nursultan = new Student("Nursultan","18BD110447");
             Nursultan.year = 1;
-            Nursultan.Info();
+            Nursultan.print();
         }
     }
     class Student 
@@ -25,9 +25,13 @@ namespace Task2
             name = n;
             id = i;
 }
-        public void Info() 
+
+        public void increment(){
+            this.year++;
+}
+
+        public void print() 
 {
-            year++;
             Console.WriteLine($"{name}-{id}-{year}");
             Console.ReadKey();
 }

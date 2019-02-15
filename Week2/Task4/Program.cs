@@ -1,71 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 
-namespace Task4
+namespace Task_4
 {
-
     class Program
     {
-        public class SimpleFileCopyandDelete
+        static void Main(string[] args)
         {
-            static void Main()
-            {
-                string fileName = "test3.txt";
-                string Path = @"C:\PP2\Week2\path";
-                string Path1 = @"C:\PP2\Week2\path1";
-                string sourceFile = System.IO.Path.Combine(Path, fileName);
-                string destFile = System.IO.Path.Combine(Path1, fileName);
-                if (!System.IO.Directory.Exists(Path1))
-                {
-                    System.IO.Directory.CreateDirectory(Path1);
-                }
-                System.IO.File.Copy(sourceFile, destFile, true);
-                if (System.IO.Directory.Exists(Path))
-                {
-                    string[] files = System.IO.Directory.GetFiles(Path);
 
-                    
-                    foreach (string s in files)
-                    {
-                        
-                        fileName = System.IO.Path.GetFileName(s);
-                        destFile = System.IO.Path.Combine(Path1, fileName);
-                        System.IO.File.Copy(s, destFile, true);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Исходный путь не существует!");
-                }
-                
-                if (System.IO.File.Exists(@"C:\PP2\Week2\path\test3.txt"))
-                {
-                    
-                    try
-                    {
-                        System.IO.File.Delete(@"C:\PP2\Week2\path\test3.txt");
-                    }
-                    catch (System.IO.IOException e)
-                    {
-                        Console.WriteLine(e.Message);
-                        return;
-                    }
-                }
-               
+            DirectoryInfo path1 = new DirectoryInfo (@"C:\PP2\Week2\path");  // создать  каталога для исходной папки
+            DirectoryInfo path2 = new DirectoryInfo (@"C:\PP2\Week2\path1"); // создать  каталога для папки назначения
+            string file = Console.ReadLine("Напиши имя файла . формат"); // прочитайте имя файла, который нужно переместить
 
-             
-                Console.WriteLine("Нажмите Enter");
+            
+            string sourcefile = Path.Combine(path1.FullName, file); //путь к исходному файлу
+            string folderfile =  Path.Combine(path2.FullName, file); //путь к файлу назначения
+            if (!File.Exists (sourcefile)) { // если исходный файл существует, то создайте новый файл с текстом «$ file_name $ + было создано»
+                Console.WriteLine ();  
+                File.WriteAllText (sourcefile, file ); 
+            }
+            Console.WriteLine ( sourcefile, folderfile); 
+            File.Move (sourcefile, folderfile); 
+            Console.WriteLine (); 
+        }
+        static void show (DirectoryInfo x) {  // использовал эту функцию для печати содержимого каталога для тестирования. Не используется в основной функции
+            Console.WriteLine (x.FullName);
+            var files = x.GetFileSystemInfos();
+            
+            foreach (var i in files) {
+                Console.WriteLine("    " + i.Name);
                 Console.ReadKey();
             }
         }
-
-       
-
-            }
-        }
-
-        
+    }
+}

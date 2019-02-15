@@ -45,6 +45,7 @@ namespace Task4
                 }
             }
             PrintIf(ss, arr);
+            Console.ReadKey();
         }
     }
 }

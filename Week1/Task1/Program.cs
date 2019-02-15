@@ -1,50 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task1
 {
     class Program
     {
-        public static bool primeN(int x) //create a function
-        {
-            if (x <= 1) //if x is less or equals 1 then return "false"
-            {
-                return false;
-            }
-            for (int i = 2; i <= Math.Sqrt(x); i++) //start cycle from 2 to the square of the function parameter
-            {
-                if (x % i == 0) //check if x is divided by i;
-                {
-                    return false; //if "yes" return false, which means that the number is not prime
-                }
-            }
-            return true; //leave the function, return "true", means that the number is Prime
-        }
         static void Main(string[] args)
         {
-            int cnt = 0; //initialize counter
-            int size = Convert.ToInt32(Console.ReadLine()); //input the size of the array into "size" var-le
-            int[] arr = new int[size]; //create array with size of "size"
-            string s = Console.ReadLine(); //initialize array items with string type in one line
-            arr = s.Split(' ').Select(int.Parse).ToArray(); //split the string untill the gap and push that values into the array
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (primeN(arr[i]) == true) //if function returns true then the number is Prime, so incriment the counter value
-                {
-                    cnt++; 
-                }
+            int n = int.Parse (Console.ReadLine()); // reading the array size
+            int []a = new int[n]; // create an array with n elements
+            for (int i = 0; i < n; i++) {
+                a[i] = int.Parse (Console.ReadLine()); // reading the ith elements of the array
             }
-            Console.WriteLine(cnt); //outup the number of the Prime numbers in the given array
-            for (int i = 0; i < arr.Length; i++)
-            {
-                if (primeN(arr[i]) == true) //condition for printing out the prime numbers, algorithm is the same as in the previous conditional statement
-                {
-                    Console.Write(arr[i] + " ");
-                }
+            List<int> pr = new List<int>(); // created a list to store prime numbers
+            for (int i = 0; i < n; i++) { // iterating through the array
+                if (isPrime (a[i])) // a[i] is prime
+                    pr.Add (a[i]); // add a[i] to the back of pr
             }
+            Console.WriteLine (pr.Count); // print the size of prime numbers subset
+            foreach  (var x in pr) // print primes
+                Console.Write (x.ToString() + " "); // convert integers to the strings and print them with spaces
+            Console.ReadKey();
+        }
+        static bool isPrime (int x) {
+            if (x == 1) // corner case
+                return false;
+            for (int i = 2; i * i <= x; i++) // iterating over possible divisiors <= sqrt(x)
+                if (x % i == 0) // x divides i
+                    return false;
+             // no divisors were found
+             return true;
         }
     }
 }
